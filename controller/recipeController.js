@@ -1,4 +1,4 @@
-const recipes = require('../model/recipeModel')
+const recipes = require('../models/recipeModel')
 
 //get all recipes
 exports.getAllRecipesController = async(req,res)=>{
@@ -33,6 +33,27 @@ exports.relatedRecipeController = async(req,res)=>{
     try{
         const allRelatedRecipe = await recipes.find({cuisine})
         res.status(200).json(allRelatedRecipe)
+    }catch(error){
+        console.log(error);
+        res.status(500).json(error)
+    }
+    
+}
+
+//add recipe
+exports.addRecipeController = async(req,res)=>{
+    console.log("inside relatedRecipeController");
+    const {name,ingredients,instructions,prepTimeMinutes,cookTimeMinutes,servings,difficulty,cuisine,caloriesPerServing,image,mealType} = req.body
+    try{
+        const existingRecipe = await recipes.findOne({name})
+        if(existingRecipe){
+            res.status(409).json("recipe already exists... add another")
+        }else{
+            const newRecipe = await recipes.create({
+                name,ingredients,instructions,prepTimeMinutes,cookTimeMinutes,servings,difficulty,cuisine,caloriesPerServing,image,mealType
+            })
+            res.status(200).json(newRecipe)
+        }
     }catch(error){
         console.log(error);
         res.status(500).json(error)

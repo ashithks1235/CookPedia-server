@@ -52,4 +52,16 @@ router.get('/user-downloads',jwtMiddleware,downloadController.getUserDownloadLis
 // get download list
 router.get('/downloads',adminMiddleware,downloadController.getAllDownloadListController)
 
+// get user list
+router.get('/users',adminMiddleware,userController.getAllUsersController)
+
+// get feedbacks list
+router.get('/feedbacks',adminMiddleware,feedbackController.getAllFeedback)
+
+// update feedback list
+router.put('/feedbacks/:id',adminMiddleware,feedbackController.updateFeedback)
+
+// add recipe
+router.post('/recipes',adminMiddleware,recipeController.addRecipeController)
+
 module.exports = router

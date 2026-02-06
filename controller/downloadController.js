@@ -1,4 +1,4 @@
-const downloads = require('../model/downloadModel')
+const downloads = require('../models/downloadModel')
 
 //add to downloads
 exports.addToDownloadController = async (req,res)=>{
@@ -37,7 +37,7 @@ exports.getUserDownloadListController = async (req,res)=>{
     }
 }
 
-//get user download list
+//get all download list
 exports.getAllDownloadListController = async (req,res)=>{
     console.log("inside getAllDownloadListController");
     try{

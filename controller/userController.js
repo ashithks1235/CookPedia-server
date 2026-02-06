@@ -1,4 +1,4 @@
-const users = require('../model/userModel')
+const users = require('../models/userModel')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
@@ -48,7 +48,6 @@ exports.loginController = async (req,res)=>{
 }
 
 //update user picture
-
 exports.updateUserPictureController = async (req,res)=>{
     console.log("inside updateUserPictureController");
     const uploadPictureFile = req.file
@@ -58,6 +57,18 @@ exports.updateUserPictureController = async (req,res)=>{
         existingUser.picture = uploadPictureFile.filename
         await existingUser.save()
         res.status(200).json(existingUser)
+    }catch(error){
+        console.log(error);
+        res.status(500).json(error)
+    }
+}
+
+//get all user
+exports.getAllUsersController = async (req,res)=>{
+    console.log("inside getAllUsersController");
+    try{
+        const allUsers = await users.find({role:{$eq:"user"}})
+        res.status(200).json(allUsers)
     }catch(error){
         console.log(error);
         res.status(500).json(error)

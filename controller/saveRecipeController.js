@@ -1,4 +1,4 @@
-const saveRecipes = require('../model/saveRecipeModel')
+const saveRecipes = require('../models/saveRecipeModel')
 
 //add to downloads
 exports.saveRecipeToCollectionController = async (req,res)=>{
