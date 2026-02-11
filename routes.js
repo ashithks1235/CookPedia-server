@@ -50,7 +50,7 @@ router.put('/user/:id',jwtMiddleware,multerMiddleware.single('picture'),userCont
 router.get('/user-downloads',jwtMiddleware,downloadController.getUserDownloadListController)
 
 // get download list
-router.get('/downloads',adminMiddleware,downloadController.getAllDownloadListController)
+router.get('/downloads',jwtMiddleware,downloadController.getAllDownloadListController)
 
 // get user list
 router.get('/users',adminMiddleware,userController.getAllUsersController)
